@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ERC721RExample is ERC721A, Ownable {
     uint256 public constant maxMintSupply = 8000;
-    uint256 public constant mintPrice = 0.1 ether;
-    uint256 public constant refundPeriod = 45 days;
+    uint256 public constant mintPrice = 100 ether;
+    uint256 public constant refundPeriod = 20 seconds;
 
     // Sale Status
     bool public publicSaleActive;
@@ -17,7 +17,7 @@ contract ERC721RExample is ERC721A, Ownable {
     uint256 public refundEndTime;
 
     address public refundAddress;
-    uint256 public maxUserMintAmount = 5;
+    uint256 public maxUserMintAmount = 50;
     mapping(address => uint256) public userMintedAmount;
     bytes32 public merkleRoot;
 
@@ -134,6 +134,14 @@ contract ERC721RExample is ERC721A, Ownable {
 
     function _leaf(address _account) internal pure returns (bytes32) {
         return keccak256(abi.encodePacked(_account));
+    }
+
+    function getrefundEndTime() external view returns(uint256){
+        return refundEndTime;
+    }
+
+    function getBlockTimestamp() external view returns(uint256){
+        return block.timestamp;
     }
 
     function _isAllowlisted(

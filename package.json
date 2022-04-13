@@ -10,5 +10,8 @@
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.1",
     "hardhat": "^2.9.2"
+  },
+  "dependencies": {
+    "Hardhat": "npm:hardhat@^2.9.3"
   }
 }
